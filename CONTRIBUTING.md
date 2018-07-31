@@ -6,10 +6,11 @@ Suggested steps to setting up your development environment:
 1. Create a blank folder for localhost named `achievacity`.
 2. Download [User Spice](https://github.com/mudmin/UserSpice4/archive/master.zip) and extract to your project folder.
 3. Open `index.php` and follow install directions.
-4. Clone git repo!
+4. Clone git repo.
+5. Import [.db/achievacity.sql](.db/achievacity) into an SQL server (it also creates the database itself), and you're done!
 
 ## Submitting Changes
-Good ol' pull request
+A good ol' pull request is sufficient for now.
 
 ## Styleguide
 Very minimal:
@@ -27,4 +28,4 @@ opposed to
 ```
 
 ## Additional Notes
-This project is very new and empty, but these documents will grow as the app does.
+This project is very new and empty, but these documents will grow as the app does!
