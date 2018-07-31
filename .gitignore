@@ -1,0 +1,13 @@
+.dev/my_thoughts.md
+
+# UserSpice (built-in)
+*~
+*.swp
+*.bak
+
+# UserSpice (unchanged files)
+favicon.ico
+z_us_root.php
+install
+users
+usersc
