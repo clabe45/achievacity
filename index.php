@@ -33,22 +33,12 @@ require_once $abs_us_root.$us_url_root.'users/includes/navigation.php';
 			<div class="col-sm-12">
 
 				<!-- My content -->
-				<?php if (!$user->isLoggedIn()): ?>
-				<h1 class="page-header">
-					Welcome to Achievacity
-					<small>For those who want to get things done</small>
-				</h1>
-				<h3>What is it?</h3>
-				<big>Achievacity is a web app that scores user success with accomplishing any <strong>routines</strong> and <strong>goals</strong>.</big>
-				<h3>How does it work?</h3>
-				<big>Every day, the app creates a score by averaging your success with all your goals.</big>
-				<h3>How can I start?</h3>
-				<big>You can <a href="users/join.php">register</a>!</big>
-
-				<?php else: ?>
-				<em>[app content goes here]</em>
-
-				<?php endif; ?>
+				<?php
+					if (!$user->isLoggedIn())
+						require_once "welcome.php";
+					else
+						require_once "app.php";
+				?>
 
 			</div> <!-- /.col -->
 		</div> <!-- /.row -->
