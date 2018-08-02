@@ -37,7 +37,7 @@ require_once $abs_us_root.$us_url_root.'users/includes/navigation.php';
 					if (!$user->isLoggedIn())
 						require_once "welcome.php";
 					else
-						require_once "app.php";
+						require_once "app/index.php";
 				?>
 
 			</div> <!-- /.col -->

@@ -8,10 +8,9 @@ This app will record how well the user has followed her goals and/or routines an
 **Goals** are one-time accomplishments. **Routines** are recurring accomplishments. Each goal/routine has the following properties:
 - Weight given by the user on a five-point scale, `1` being unimportant and `5` being very important.
 - A due date. If it is not completed by then, it is counted as incomplete. Each routine has a cyclic due date (e.g., every Monday).
-- Scores are calculated probably every day.
 
 ### Scoring
-Score is calculated by performing a weighted average on the user's goals and routines. Each goal is valued as `1` (complete) or `0` (incomplete), and each routine is marked as a percentage of how many times it was completed out of all the times it _could_ have been completed since the last scoring.
+Score is calculated by performing a weighted average on the user's goals and routines. Each goal is valued as `1` (complete), `0.5` (partially complete), or `0` (incomplete), and each routine is marked as a percentage of how many times it was completed out of all the times it _could_ have been completed since the last scoring.
 
 ## Development
 This project is hot off the press (and very much a work in progress)! If you would like to get involved, please check out [its future](.dev) and check out [CONTRIBUTING.md](CONTRIBUTING.md)! If enough interest is shown in this project, I will create a slack workspace.
