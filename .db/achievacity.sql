@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2018 at 03:59 AM
+-- Generation Time: Aug 02, 2018 at 01:58 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -15,6 +15,22 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `achievacity` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `achievacity`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `goals`
+--
+
+CREATE TABLE `goals` (
+  `id` int(10) UNSIGNED NOT NULL COMMENT 'Unique id',
+  `user_id` int(10) UNSIGNED NOT NULL COMMENT 'Foreign key for user',
+  `name` varchar(63) NOT NULL COMMENT 'The goal''s name',
+  `description` varchar(255) NOT NULL COMMENT 'The goal''s description',
+  `due_date` date NOT NULL COMMENT 'When the goal is due',
+  `weight` tinyint(3) UNSIGNED NOT NULL COMMENT 'Importance',
+  `completed` bit(1) NOT NULL DEFAULT b'0' COMMENT 'If the goal has been achieved'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='For one-time tasks';
 
 -- --------------------------------------------------------
 
@@ -98,6 +114,12 @@ INSERT INTO `settings` (`id`, `recaptcha`, `force_ssl`, `css_sample`, `us_css1`,
 --
 
 --
+-- Indexes for table `goals`
+--
+ALTER TABLE `goals`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
@@ -107,6 +129,11 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `goals`
+--
+ALTER TABLE `goals`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Unique id';
 --
 -- AUTO_INCREMENT for table `settings`
 --
