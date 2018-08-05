@@ -34,8 +34,9 @@
 
 ## Submitting Changes
 1. Un-gitignore the modified file(s), by prefixing the path(s) with `!`. **Note: only add files that were previously added or that you modified.**
-2. `git push origin master`
-3. Submit a pull request on your fork.
+2. Stage and commit modified file(s).
+3. `git push origin master`
+4. Submit a pull request on your fork.
 
 ## Styleguide
 1. Write clean code. [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Stay consistent to the project style:
