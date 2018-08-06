@@ -1,6 +1,7 @@
 /**
  * @namespace Refresh for refreshing the data tables
  * used in other app scripts and in this file
+ * TODO: make per-item functions, along with the global functions
  */
 let Refresh = (function() {
 	/**
@@ -95,7 +96,11 @@ let Refresh = (function() {
 			case 'completed': {
 				input.type = 'checkbox';
 				input.className = 'editable completed';	// obviously not editable
-				value = value == '1' ? true : false;
+				// force type conversion, because value is a string (for whatever reason)
+				if (value == 1)
+					input.checked = true;
+				else if (value === null)
+					input.indeterminate = true;	// half check
 				break;
 			}
 			default: {
@@ -106,8 +111,7 @@ let Refresh = (function() {
 		if (input.type !== 'checkbox') {
 			input.readOnly = true;
 			input.value = value;
-		} else
-			input.checked = value;
+		}
 
 		cell.appendChild(input);
 	}

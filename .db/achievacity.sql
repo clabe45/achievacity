@@ -21,6 +21,7 @@ USE `achievacity`;
 -- Table structure for table `goals`
 --
 
+DROP TABLE IF EXISTS `goals`;
 CREATE TABLE `goals` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'Unique id',
   `user_id` int(10) UNSIGNED NOT NULL COMMENT 'Foreign key for user',
@@ -28,7 +29,7 @@ CREATE TABLE `goals` (
   `description` varchar(255) NOT NULL COMMENT 'The goal''s description',
   `due_date` date NOT NULL COMMENT 'When the goal is due',
   `weight` tinyint(3) UNSIGNED NOT NULL COMMENT 'Importance',
-  `completed` bit(1) NOT NULL DEFAULT b'0' COMMENT 'If the goal has been achieved'
+  `completed` bit(1) NULL DEFAULT b'0' COMMENT 'If the goal has been achieved'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='For one-time tasks';
 
 -- --------------------------------------------------------
@@ -37,6 +38,7 @@ CREATE TABLE `goals` (
 -- Table structure for table `settings`
 --
 
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
   `id` int(50) NOT NULL,
   `recaptcha` int(1) NOT NULL DEFAULT '0',

@@ -20,8 +20,9 @@
 		// special types
 		if (strpos($key, 'date'))
 			$value = date('Y-m-d', strtotime($value));	// reformat for SQL datetime
-		elseif ($key == 'completed')
-			$value = $value === 'true';	// string to boolean (PDO uses boolean for SQL BIT)
+		elseif ($key == 'completed')	// (checkbox)
+			// string to boolean (PDO uses boolean for SQL BIT), and preserve NULL
+			$value = $value == NULL ? NULL : $value === 'true';
 
 		$db->update('goals', $goal_id, [ $key => $value ]);
 		// TODO: error/success reporting with $db->error(), etc.
