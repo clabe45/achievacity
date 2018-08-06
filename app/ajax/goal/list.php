@@ -6,7 +6,7 @@
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		header('Content-Type: application/json');
 		require_once "../../../users/init.php";	// ew TODO: figure absolute/relative paths out
-		// taken from header.php (the rest will clutter json output with html)
+		// taken from header.php (the rest of that file would clutter json output with html)
 		$db = DB::getInstance();
 
 		$goals = $db->query('SELECT * FROM goals WHERE user_id=?', [$user->data()->id]);

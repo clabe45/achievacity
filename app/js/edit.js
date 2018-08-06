@@ -41,16 +41,20 @@ $(document).ready(function() {
 	});
 
 	// listen to datepicker select event, by modifying inputs when inserted into the DOM
-	let targetNodes = $('#tasks tbody'),
+	let targetNodes = $('#tasks table'),
 		config = { childList: true },
 		observer = new MutationObserver(function(mutationsList) {
 			for (let mutation of mutationsList) {
-				for (let i=0; i<mutation.addedNodes.length; i++) {
+				if (mutation.addedNodes.length !== 1)
+					throw "Number of added nodes is not 1!";
+				let tbody = mutation.addedNodes[0];
+				for (let i=0; i<tbody.childNodes.length; i++) {
+					let row = tbody.childNodes[i];
 					// don't modify creation row (see create.js)
-					if (mutation.addedNodes[i].className === 'create') continue;
+					if (row.className === 'create') continue;
 
 					// there must be an input.date in the subhierarchy, so we'll assume it's there
-					$(mutation.addedNodes[i]).find('input.due-date').datepicker({
+					$(row).find('input.due-date').datepicker({
 						minDate: 0,	// today
 						onSelect: function() {
 		/* wow */			makeReadonly(this);
@@ -58,7 +62,7 @@ $(document).ready(function() {
 						}
 					});
 
-					let completed = $(mutation.addedNodes[i]).find('input.completed')[0];
+					let completed = $(row).find('input.completed')[0];
 					completed.wasChecked = completed.checked;
 					completed.wasIndeterminate = completed.indeterminate;
 					completed.addEventListener('input', function() {

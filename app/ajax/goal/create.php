@@ -14,7 +14,8 @@
 			'user_id' => $user_id,
 			'name' => $_POST['name'],
 			'description' => $_POST['description'],
-			'due_date' => $_POST['due-date'],
+			// Reformat from jQuery UI to SQL DATE type
+			'due_date' => date('Y-m-d', strtotime($_POST['due-date'])),
 			'weight' => $_POST['weight']
 		];
 
