@@ -46,6 +46,9 @@ $(document).ready(function() {
 		observer = new MutationObserver(function(mutationsList) {
 			for (let mutation of mutationsList) {
 				for (let i=0; i<mutation.addedNodes.length; i++) {
+					// don't modify creation row (see create.js)
+					if (mutation.addedNodes[i].className === 'create') continue;
+
 					// there must be an input.date in the subhierarchy, so we'll assume it's there
 					$(mutation.addedNodes[i]).find('input.due-date').datepicker({
 						minDate: 0,	// today
@@ -54,6 +57,7 @@ $(document).ready(function() {
 							updateTaskData(this);
 						}
 					});
+
 					let completed = $(mutation.addedNodes[i]).find('input.completed')[0];
 					completed.wasChecked = completed.checked;
 					completed.wasIndeterminate = completed.indeterminate;

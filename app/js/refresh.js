@@ -22,14 +22,15 @@ let Refresh = (function() {
 	 * @private Fills a table from the JSON response from a list.php
 	 */
 	function populateTable(table, data) {
-		// clear all previous data rows
-		for (let i=1; i<table.rows.length; i++)
-			table.deleteRow(1);	// 1 header row
+		// replace current <tbody> with new one
+		let oldTbody = table.querySelector('tbody');
+		let newTbody = document.createElement('tbody');
 
 		for (let i=0; i<data.length; i++) {
-			let row = table.insertRow(-1);	// append row
+			let row = newTbody.insertRow(-1);	// append row
 			populateRow(row, data[i]);
 		}
+		table.replaceChild(newTbody, oldTbody);
 	}
 
 	/**
@@ -45,7 +46,7 @@ let Refresh = (function() {
 		// put delete button on last cell (now key/value)
 		let deleteButton = document.createElement('button');
 		deleteButton.innerHTML = 'Delete';
-		// IMO, this doesn't need a separate `delete.js`, we can change this if necessary
+		// IMO, this doesn't need a separate `delete.js`, we can do that if necessary though
 		deleteButton.addEventListener('click', function() {
 			$.post(
 				'app/ajax/goal/delete.php',

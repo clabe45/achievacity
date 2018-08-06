@@ -6,14 +6,17 @@
 	<div id="goals">
 		<h2>Goals</h2>
 		<table id="goals-table">
-			<tr>
-				<td><strong>Name</strong></td>
-				<td><strong>Description</strong></td>
-				<td><strong>Due Date</strong></td>
-				<td><strong>Weight</strong></td>
-				<td><strong>Completed?</strong>
-				<td><!-- empty column for buttons such as Delete --></td>
-			</tr>
+			<thead>
+				<tr>
+					<th><strong>Name</strong></th>
+					<th><strong>Description</strong></th>
+					<th><strong>Due Date</strong></th>
+					<th><strong>Weight</strong></th>
+					<th><strong>Completed?</strong>
+					<th><!-- empty column for buttons such as Delete --></th>
+				</tr>
+			</thead>
+			<tbody></tbody>
 		</table>
 		<button id="add-goal">Add goal</button>
 	</div>

@@ -1,7 +1,7 @@
 /**
  * @file For task creation
  * TODO: Only allow one creation row at a time.
- * TODO: in this file and in edit.js, don't detect ENTER and ESC when datepicker is opened
+ * TODO: in this file and in edit.js, don't detect ENTER and ESC when datepicker is opened?
  */
 $(document).ready(function() {
 	$('#add-goal').click(function() {
@@ -14,6 +14,7 @@ $(document).ready(function() {
 	 */
 	function createGoalTemplate(table) {
 		let row = table.insertRow(-1);	// append row
+		row.className = 'create';
 		let name = document.createElement('input');
 		name.type = 'text';
 		name.placeholder = 'Get Discord';
@@ -33,19 +34,28 @@ $(document).ready(function() {
 		dueDate.addEventListener('keyup', detectEnterCancel);
 		row.insertCell(-1).appendChild(dueDate);
 
-		let weight = document.createElement('input');
-		weight.type = 'number';
-		weight.min = 1;
-		weight.max = 5;
-		weight.placeholder = 3;
-		weight.addEventListener('keyup', detectEnterCancel);
+		let weight = document.createElement('div');
+		let weightInput = document.createElement('input');
+		weightInput.type = 'range';
+		weightInput.min = 1;
+		weightInput.max = 5;
+		weightInput.value = 3;
+		weightInput.addEventListener('keyup', detectEnterCancel);
+		let weightMin = document.createElement('span');
+		weightMin.innerHTML = weightInput.min;
+		let weightMax = document.createElement('span');
+		weightMax.innerHTML = weightInput.max;
+		weight.appendChild(weightMin);
+		weight.appendChild(weightInput);
+		weight.appendChild(weightMax);
+
 		row.insertCell(-1).appendChild(weight);
 
 		let addButton = document.createElement('button');
 		addButton.innerHTML = 'Add';
 		addButton.addEventListener('click', function() {
 			// TODO: validate and display error(s) if necessary
-			createGoal(name.value, description.value, dueDate.value, weight.value);
+			createGoal(name.value, description.value, dueDate.value, weightInput.value);
 		});
 		row.insertCell(-1).appendChild(addButton);
 
@@ -78,7 +88,7 @@ $(document).ready(function() {
 	function createGoal(name, description, dueDate, weight) {
 		$.post(
 			'app/ajax/goal/create.php',		// called from root
-			{ name: name, description: description, 'due-date': dueDate, weight: weight }
+			{ 'name': name, 'description': description, 'due-date': dueDate, 'weight': weight }
 		)
 			.done(function(data) {
 				// TODO: Display message here

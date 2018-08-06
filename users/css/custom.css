@@ -1,0 +1,26 @@
+/*
+    STRUCTURE
+*/
+/*  GLOBAL */
+input:focus, textarea:focus {
+    outline-color: purple;
+}
+
+#tasks {
+    float: left;
+}
+
+#scores {
+    float: right;
+}
+
+#tasks > div > button {
+    float: right;
+}
+
+tr.create input[type="range"] {
+    display: inline-block;  /* Override `display: block;` from dark.css :< */
+    vertical-align: bottom; /* Vertically align with '1' and '5' */
+    margin: 0 5px;
+    width: 100px;
+}
