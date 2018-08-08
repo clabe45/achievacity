@@ -9,16 +9,12 @@ var Create = (function() {
 	});
 
 	function createGoal(name, description, dueDate, weight) {
-		$.post(
+		Util.post(
 			'app/ajax/goal/create.php',		// called from root
 			{ 'name': name, 'description': description, 'due-date': dueDate, 'weight': weight }
 		)
-			.done(function(data) {
-				// TODO: Display message here
+			.then(function(data) {
 				Refresh.list.goals();
-			})
-			.fail(function(xhr, status, error) {
-				throw 'Error creating goal: ' + error;
 			});
 
 	}

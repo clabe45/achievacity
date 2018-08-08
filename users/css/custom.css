@@ -1,11 +1,32 @@
-/*
-    STRUCTURE
-*/
-/*  GLOBAL */
+/*  GLOBAL (TODO? in future replace UserSpice styling with this) */
 input:focus, textarea:focus {
     outline-color: purple;
 }
 
+#global-messages {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+.global-message {
+    top: 50px;
+    padding: 6px;
+    width: 50%;
+    margin: auto;
+}
+/* TODO: make .success and .error and make these styles more applicable to every success/error */
+#global-success {
+    background-color: rgba(52, 219, 60, 0.2);
+    color: #34db3c; /* same as above, but opaque */
+    border: 1px solid #34db3c;
+}
+#global-error {
+    background-color: rgba(219, 52, 60, 0.2);
+    color: #db343c;
+    border: 1px solid #db343c;  /* same as above, but opaque */
+}
+
+/* APP */
 #tasks {
     float: left;
 }

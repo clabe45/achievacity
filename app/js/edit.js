@@ -104,18 +104,14 @@ $(document).ready(function() {
 			// Use lastValue, if the name is the key that's being changed, so that the ajax call can find the right task!
 			name = nameInput.value,
 			originalName = key === 'name' ? nameInput.lastValue : nameInput.value;
-		$.post(
+		Util.post(
 			'app/ajax/'+type+'/edit.php',
 			{ name: originalName, key: key, value: value }
 		)
-			.done(function(data) {
-
+			.then(function(data) {
 				// doesn't seem to be necessary, but technically good for if the request failed
 				// Use `name` not `originalName` because now the html `name` attribute is modified.
 				Refresh.item.type(type, name);
-			})
-			.fail(function(xhr, status, error) {
-				throw 'Error updating '+type+': ' + error;
 			});
 	}
 });

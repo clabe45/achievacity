@@ -35,8 +35,13 @@
 		}
 
 		$db->insert('goals', $goal);
-		$return['success'] = true;
-		$return['message'] = "Goal '{$goal['name']}' added successfully!";
+		if (!$db->error()) {
+			$return['success'] = true;
+			$return['message'] = "Goal '{$goal['name']}' added successfully!";
+		} else {
+			$return['success'] = false;
+			$return['message'] = "An internal server error occured.";
+		}
 		echo json_encode($return);
 
 	} else {

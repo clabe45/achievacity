@@ -3,6 +3,10 @@
 <script src="app/js/refresh.js"></script>
 <script src="app/js/create.js"></script>
 <script src="app/js/edit.js"></script>
+<div id="global-messages">
+	<div id="global-success" class="global-message" style="display:none">success</div>
+	<div id="global-error" class="global-message" style="display:none">error</div>
+</div>
 <div id="tasks">
 	<div id="goals">
 		<h2>Goals</h2>

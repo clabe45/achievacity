@@ -8,20 +8,17 @@ let Refresh = (function() {
 
 	 */
 	function list(type) {
-		$.post('app/ajax/'+type+'/list.php')	// called from root
-			.done(function(data) {
+		Util.post(`app/ajax/${type}/list.php`)	// called from root
+			.then(function(data) {
 				let table = document.getElementById(type+'s-table');	// I like to use pure JavaScript when I can!
 				populateTable(table, data);
-			})
-			.fail(function(xhr, status, error) {
-				throw 'Error refreshing '+type+'s: ' + error;
 			});
 	}
 
 	/**
 	 * @private Fills a table from the JSON response from a list.php
-	 * @param {HTMLTableElement} table <code>&lt;table&gt;</code> or <code>&lt;tbody&gt;</code>
-	 * @param {object[]} data array of task data items
+	 * @param {HTMLTableElement} table - <code>&lt;table&gt;</code> or <code>&lt;tbody&gt;</code>
+	 * @param {object[]} data - array of task data items
 	 */
 	function populateTable(table, data) {
 		// replace current <tbody> with new one
@@ -50,20 +47,17 @@ let Refresh = (function() {
 		}
 		if (rowIndex < 0) throw "Couldn't find row with name '"+name+"'";
 
-		$.post(
+		Util.post(
 			'app/ajax/'+type+'/item.php',
 			{ 'name': name }
 		)	// called from root
-			.done(function(item) {
+			.then(function(item) {
 				// remove and re-add row, to trigger util.js tbody MutationObserver
 				table.deleteRow(rowIndex);
 				let row = table.insertRow(rowIndex);
-				
+
 				populateRow(row, item);
 				Util.registerRow(row);
-			})
-			.fail(function(xhr, status, error) {
-				throw 'Error refreshing '+type+'s: ' + error;
 			});
 	}
 
@@ -81,7 +75,7 @@ let Refresh = (function() {
 	/**
 	 * @private Fills the table row from JSON data from the server, or creates a new one
 	 * @param {HTMLTableRowElement} row
-	 * @param {object} [item] the JSON data to use when filling this row. If this argument is omitted, then a <em>new task</em> form will be created.
+	 * @param {object} [item] - the JSON data to use when filling this row. If this argument is omitted, then a <em>new task</em> form will be created.
 	 */
 	function populateRow(row, item) {
 		let creating = !item;
@@ -109,15 +103,15 @@ let Refresh = (function() {
 			// IMO, this doesn't need a separate `delete.js`, we can do that if necessary though
 			// TODO: add confirmation message
 			deleteButton.addEventListener('click', function() {
-				$.post(
+				Util.post(
 					'app/ajax/goal/delete.php',
 					{ name: row.querySelector('.name input').value }
 				)
-					.done(function(data) {
+					.then(function(data) {
 						Refresh.list.goals();
 						// TODO
 					})
-					.fail(function(xhr, status, error) {
+					.catch(function(xhr, status, error) {
 						// TODO
 					});
 			});
@@ -151,8 +145,8 @@ let Refresh = (function() {
 
 	/**
 	 * @private Fills the table data cell from the key value pair from the database
-	 * @param {string} key the column name
-	 * @param value the column data
+	 * @param {string} key - the column name
+	 * @param value - the column data
 	 */
 	function populateCell(cell, key, value, creating) {
 		key = key.replace('_', '-');

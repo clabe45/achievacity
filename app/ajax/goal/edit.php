@@ -12,6 +12,11 @@
 		$name = $_POST['name'];	// goal name
 
 		$goal = $db->query("SELECT id FROM goals WHERE user_id=? AND name=? LIMIT 1", [ $user_id, $name ]);
+		if (!$goal->first()) {
+			$return['success'] = false;
+			$return['message'] = "Goal '$name' does not exist!";
+			die(json_encode($return));
+		}
 		$goal_id = $goal->first()->id;
 
 		$key = str_replace('-', '_', $_POST['key']);	// convert format from front-end to back-end
@@ -22,10 +27,16 @@
 			$value = date('Y-m-d', strtotime($value));	// reformat for SQL datetime
 		elseif ($key == 'completed')	// (checkbox)
 			// string to boolean (PDO uses boolean for SQL BIT), and preserve NULL
-			$value = $value == NULL ? NULL : $value === 'true';
+			$value = $value == null ? null : $value === 'true';
 
 		$db->update('goals', $goal_id, [ $key => $value ]);
-		// TODO: error/success reporting with $db->error(), etc.
+		if (!$db->error()) {
+			$return['success'] = true;
+			$return['message'] = null;	// no need to display a message on edit
+		} else {
+			$return['success'] = false;
+			$return['message'] = "An internal server error occured.";
+		}
 
 		echo json_encode([]);
 	}

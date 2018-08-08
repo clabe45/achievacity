@@ -1,5 +1,56 @@
 var Util = (function() {
     let rowListeners = [];
+
+    /**
+     * Performs an ajax request of type <code>POST</code> (through jQuery),
+     * and displays a message based on the response.
+     * @param {string} url
+     * @param {object} data
+     */
+    function post(url, data) {
+        return new Promise(function(resolve, reject) {
+            $.post(url, data)
+                .done(function(data) {
+                    if (data['message']) {
+                        // it's a message ajax file (i.e., it's not list.php or item.php)
+                        if (data['success']) showSuccess(data['message']);
+                        else showError(data['message']);
+                    }
+                    if (resolve) resolve(data);
+                })
+                .fail(function(xhr, status, error) {
+                    showError('An internal error occured.');    // TODO: make more specific
+                    if (reject) reject(error);
+                });
+        })
+    }
+
+    function showError(message) {
+        showMessage('error', message);
+    }
+
+    function showSuccess(message) {
+        showMessage('success', message);
+    }
+
+    /**
+     * Displays a global message
+     * @param {string} type - either <code>"error"</code> or <code>"success"</code>
+     */
+    function showMessage(type, message) {
+        let messageDiv = document.getElementById(`global-${type}`);
+        if ( $(messageDiv).is(':hidden') )
+            $(messageDiv).show();
+        else
+            clearInterval(messageDiv.dataset.timerIdHide);    // don't hide early
+
+        messageDiv.innerHTML = message;
+        messageDiv.dataset.timerIdHide = setTimeout(function() {
+            $(message).hide();
+            delete messageDiv.dataset.timerIdHide;
+        }, 8000);
+    }
+
     /** fake a <code>&lt;form&gt;</code> */
 	function detectEnterCancel(event, enterButton, cancelButton) {
 		var code = event.keyCode ? event.keyCode : event.which;
@@ -31,7 +82,7 @@ var Util = (function() {
 
 		for (let i=0; i<requiredKeys.length; i++) {
 			let key = requiredKeys[i];
-			let input = $(row.querySelector('.' + key + ' input'));
+			let input = row.querySelector('.' + key + ' input');
 			// make sure `validate(input)` is before `passed`, so it is guaranteed to be called (to show the error)
 			passed = validate(input) && passed;
 		}
@@ -43,10 +94,10 @@ var Util = (function() {
 	 * If <code>input</code> is invalid, a class <code>.invalid</code> will be added to it.
 	 * @param {HTMLInputElement} input
 	 * @callback test
-	 * @param {HTMLInputElement} input the provided input
+	 * @param {HTMLInputElement} input - the provided input
 	 * @return {boolean} whether the input is valid or not
 	 *
-	 * @return {boolean} whether th einput is valid or not
+	 * @return {boolean} whether the einput is valid or not
 	 */
 	function validate(input, test) {
 		test = test || function(input){return !!input.value};	// default test checks for input in required field
@@ -80,6 +131,10 @@ var Util = (function() {
     }
 
     return {
+        post: post,
+        showError: showError,
+        showSuccess: showSuccess,
+        showMessage: showMessage,
         detectEnterCancel: detectEnterCancel,
         tomorrow: tomorrow,
         validateRow: validateRow,
