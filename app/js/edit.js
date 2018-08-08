@@ -65,7 +65,6 @@ $(document).ready(function() {
 		completed.wasChecked = completed.checked;
 		completed.wasIndeterminate = completed.indeterminate;
 		completed.addEventListener('input', function() {
-			console.log(this.wasChecked, this.wasIndeterminate);
 			// use _was*_ because value on event fire is the value *after* click, which messes things up
 			if (this.wasChecked && !this.wasIndeterminate)
 				this.checked = false;

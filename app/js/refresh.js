@@ -31,6 +31,7 @@ let Refresh = (function() {
 		for (let i=0; i<data.length; i++) {
 			let row = newTbody.insertRow(-1);	// append row
 			populateRow(row, data[i]);
+			Util.registerRow(row);
 		}
 		table.replaceChild(newTbody, oldTbody);
 	}
@@ -42,20 +43,24 @@ let Refresh = (function() {
 	 */
 	function item(type, name) {
 		let table = document.getElementById(type+'s').querySelector('tbody');
-		let row = null;
+		let rowIndex = -1;
 		for (let i=0; i<table.children.length; i++) {
-			if (table.children[i].querySelector('.name input').value === name) {
-				row = table.children[i];
-			}
+			if (table.children[i].querySelector('.name input').value === name)
+				rowIndex = i;
 		}
-		if (!row) throw "Couldn't find row with name '"+name+"'";
+		if (rowIndex < 0) throw "Couldn't find row with name '"+name+"'";
 
 		$.post(
 			'app/ajax/'+type+'/item.php',
 			{ 'name': name }
 		)	// called from root
 			.done(function(item) {
+				// remove and re-add row, to trigger util.js tbody MutationObserver
+				table.deleteRow(rowIndex);
+				let row = table.insertRow(rowIndex);
+				
 				populateRow(row, item);
+				Util.registerRow(row);
 			})
 			.fail(function(xhr, status, error) {
 				throw 'Error refreshing '+type+'s: ' + error;
@@ -70,6 +75,7 @@ let Refresh = (function() {
 		let table = document.getElementById(type+'s').querySelector('tbody');
 		let row = table.insertRow(-1);
 		populateRow(row);
+		Util.registerRow(row);
 	}
 
 	/**

@@ -61,64 +61,30 @@ var Util = (function() {
 	}
 
     /**
-     * Registers `callback` to execute when a new row is added in *any* table.
+     * Registers `callback` to execute when a newly added row is registered with registerRow.
      * @param {function} callback
      */
     function addRowListener(callback) {
         rowListeners.push(callback);
     }
 
-    $(document).ready(function() {
-        /*
-            Observe A) row insertion in <tbody> s *and* B) <tbody> insertion in <table>.
-            Since <tbody>s load and unload (see refresh.js), (for **A**) observe <tbody> insertion in <table>, to bind the
-            row insertion observer :O
-        */
-        let tbodyObserver = new MutationObserver(function(mutationsList) {
-            for (let mutation of mutationsList) {
-                for (let i=0; i<mutation.addedNodes.length; i++) {
-                    let row = mutation.addedNodes[i];
-                    console.log('#', row);
-                    /* A) */
-                    // I know, it's very Java-y
-                    for (let i=0; i<rowListeners.length; i++) {
-                        let callback = rowListeners[i];
-                        callback(row);
-                    }
-                }
-            }
-        });	// only watch for children hierarchy being changed
-
-        let config = { childList: true },
-            tables = $('#tasks table'),
-            tableObserver = new MutationObserver(function(mutationsList) {
-                for (let mutation of mutationsList) {
-                    if (mutation.addedNodes.length !== 1)
-                        throw "Number of added nodes is not 1!";
-                    let tbody = mutation.addedNodes[0];
-                    /* B) */
-                    // take care of previous row insertions
-                    for (let i=0; i<tbody.children.length; i++) {
-                        let row = tbody.children[i];
-                        for (let j=0; j<rowListeners.length; j++) {
-                            let callback = rowListeners[j];
-                            callback(row);
-                        }
-                    }
-                    // watch for future row insertions
-                    tbodyObserver.observe(tbody, config);
-                }
-            });
-        for (let i=0; i<tables.length; i++) {
-            tableObserver.observe(tables[i], config);
+    /**
+     * Use this when a row is complete and ready to be processed by other files
+     * @param {HTMLTableRowElement} row
+     */
+    function registerRow(row) {
+        for (let i=0; i<rowListeners.length; i++) {
+            let callback = rowListeners[i];
+            callback(row);
         }
-    });
+    }
 
     return {
         detectEnterCancel: detectEnterCancel,
         tomorrow: tomorrow,
         validateRow: validateRow,
         validate: validate,
-        addRowListener: addRowListener
+        addRowListener: addRowListener,
+        registerRow: registerRow
     }
 })();
