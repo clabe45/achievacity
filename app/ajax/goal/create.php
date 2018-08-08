@@ -1,6 +1,7 @@
 <?php
 	/*
 		User must be logged in.
+		TODO: Add date created to table structure
 	*/
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// header('Content-Type: application/json');

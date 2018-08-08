@@ -1,4 +1,5 @@
 <!-- should be included in /index.php -->
+<script src="app/js/util.js"></script>
 <script src="app/js/refresh.js"></script>
 <script src="app/js/create.js"></script>
 <script src="app/js/edit.js"></script>
@@ -18,14 +19,14 @@
 			</thead>
 			<tbody></tbody>
 		</table>
-		<button id="add-goal">Add goal</button>
+		<button id="start-goal">Add goal</button>
 	</div>
 	<div id="routines">
 		<h2>Routines</h2>
 		<table id="routines-table">
 			<!-- TODO -->
 		</table>
-		<button id="add-routine" disabled>Add routine</button>
+		<button id="start-routine" disabled>Add routine</button>
 	</div>
 </div>
 <div id="scores">

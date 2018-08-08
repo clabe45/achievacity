@@ -18,9 +18,18 @@ input:focus, textarea:focus {
     float: right;
 }
 
-tr.create input[type="range"] {
+#tasks td input {
+    margin: 0 2px;  /* so red .invalid borders don't touch each other */
+}
+
+#tasks td input[type="range"] {
     display: inline-block;  /* Override `display: block;` from dark.css :< */
     vertical-align: bottom; /* Vertically align with '1' and '5' */
     margin: 0 5px;
     width: 100px;
+}
+
+.invalid {
+    border: 1px solid #db343c;
+    /* color: #db343c; */
 }
