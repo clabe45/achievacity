@@ -2,6 +2,7 @@
 **Welcome.** Thank you for showing your interest in Achievacity! We're glad you're here! Any kind of contribution is welcome.
 
 ## Environment
+Due to the project's dependency UserSpice, the setup process is a little complex.
 ### Download UserSpice (currently v4)
 - Navigate to your localhost www directory
 
@@ -34,7 +35,7 @@
 
 ## Submitting Changes
 1. Un-gitignore the modified file(s), by prefixing the path(s) with `!`. **Note: only add files that were previously added or that you modified.**
-2. Stage and commit modified file(s).
+2. Stage and commit modified file(s). If you can find an appropriate [Github emoji](https://gitmoji.carloscuesta.me/), prepend you message with that.
 3. `git push origin master`
 4. Submit a pull request on your fork.
 
