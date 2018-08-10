@@ -16,7 +16,12 @@
         $goal = $result->first();
 		clean_row($goal);
 
-		$return = $goal;
+		if ($db->error()) {
+			$return = [
+				'success' => false,
+				'message' => 'An internal error occured while fetching goals.'
+			];
+		} else $return = $goal;
 		echo json_encode($return);
 	}
 ?>

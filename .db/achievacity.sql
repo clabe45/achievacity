@@ -23,13 +23,15 @@ USE `achievacity`;
 
 DROP TABLE IF EXISTS `goals`;
 CREATE TABLE `goals` (
-  `id` int(10) UNSIGNED NOT NULL COMMENT 'Unique id',
-  `user_id` int(10) UNSIGNED NOT NULL COMMENT 'Foreign key for user',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Unique id',
+  `user_id` int(10) unsigned NOT NULL COMMENT 'Foreign key for user',
   `name` varchar(63) NOT NULL COMMENT 'The goal''s name',
   `description` varchar(255) NOT NULL COMMENT 'The goal''s description',
   `due_date` date NOT NULL COMMENT 'When the goal is due',
-  `weight` tinyint(3) UNSIGNED NOT NULL COMMENT 'Importance',
-  `completed` bit(1) NULL DEFAULT b'0' COMMENT 'If the goal has been achieved'
+  `weight` tinyint(3) unsigned NOT NULL COMMENT 'Importance',
+  `completed` bit(1) DEFAULT b'0' COMMENT 'If the goal has been achieved',
+  `created` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT 'The goals''s creation date',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='For one-time tasks';
 
 -- --------------------------------------------------------

@@ -17,7 +17,12 @@
 			clean_row($row);
 		}
 
-
+		if ($db->error()) {
+			$return = [
+				'success' => false,
+				'message' => 'An internal error occured while fetching goals.'
+			];
+		}
 		echo json_encode($return);
 	}
 ?>

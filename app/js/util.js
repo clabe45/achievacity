@@ -12,7 +12,6 @@ var Util = (function() {
             $.post(url, data)
                 .done(function(data) {
                     if (data['message']) {
-                        // it's a message ajax file (i.e., it's not list.php or item.php)
                         if (data['success']) showSuccess(data['message']);
                         else showError(data['message']);
                     }
