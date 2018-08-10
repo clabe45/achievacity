@@ -1,4 +1,6 @@
 # Achievacity
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fclabe45%2Fachievacity.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fclabe45%2Fachievacity?ref=badge_shield)
+
 Achievacity is a web app that scores user success with generic routines and goals.
 
 ## The Concept
@@ -14,3 +16,7 @@ Score is calculated by performing a weighted average on the user's goals and rou
 
 ## Development
 This project is hot off the press (and very much a work in progress)! If you would like to get involved, please check out [its future](.dev) and [CONTRIBUTING.md](CONTRIBUTING.md)! You can also join the Slack [Achievacity Team](https://join.slack.com/t/achievacity/shared_invite/enQtNDEyNjM2ODQ3OTIxLWVlOTYxOGNiODAwOWJmNGI3MDFlOWZlZWI5MGMxZTZjYmM4NGMzMmQyMzFjMWUzMGNkYzE0MmEyNjM3ZmQxMjA)!
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fclabe45%2Fachievacity.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fclabe45%2Fachievacity?ref=badge_large)
