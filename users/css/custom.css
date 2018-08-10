@@ -1,6 +1,8 @@
-/*  GLOBAL (TODO? in future replace UserSpice styling with this) */
-input:focus, textarea:focus {
-    outline-color: purple;
+/*  GLOBAL - (TODO? in future replace UserSpice styling with this) */
+input:not([type='range']):not([type='checkbox']):not([readonly]):focus,
+input[type='range']:focus, input[type='checkbox']:focus {
+    box-shadow: 0 0 3px purple;
+    outline: 0 none;
 }
 
 #global-messages {

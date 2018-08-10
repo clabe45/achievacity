@@ -13,12 +13,12 @@ $(document).ready(function() {
 	// Detect focus only by tab key.
 	$(document).keyup(function(event) {	// https://stackoverflow.com/a/16145062/3783155
 		var code = event.keyCode ? event.keyCode : event.which;
-		if (code === 9 && $('#tasks row:not(.create) input.editable:focus').length)
+		if (code === 9 && $('#tasks tr:not(.create) input.editable:focus').length)
 			makeEditable(event.target);
 	});
 
 	// lose focus (blur is fine for this, as there are no children)
-	$(document).on('blur', '#tasks row:not(.create) input.editable:not([readonly])', function(event) {
+	$(document).on('blur', '#tasks tr:not(.create) input.editable:not([readonly])', function(event) {
 		// Treat as _escape_
 		event.target.value = event.target.lastValue;	// cancel editing
 		makeReadonly(event.target);
@@ -54,6 +54,10 @@ $(document).ready(function() {
 				makeReadonly(this);
 				updateTaskData(this);
 			}
+		});
+		// let user edit date input with only one click, because that's when the jQuery UI dialog shows
+		$(row).find('.due-date input').click(function() {
+			makeEditable(this);
 		});
 
 		// don't require user to press enter on slider to submit change; a simple click/drag/keystroke is enough

@@ -1,6 +1,7 @@
 /**
  * @namespace Refresh for adding content to the `<table>`s; moslty for reloading data from the server
  * Used in other app scripts and in this file
+ * TODO: on hover over description, show tooltip of full text
  */
 let Refresh = (function() {
 	/**
@@ -135,7 +136,7 @@ let Refresh = (function() {
 
 			let cancelButton = document.createElement('button');
 			cancelButton.innerHTML = 'Cancel';	// TODO: replace these with images?
-			cancelButton.className = 'cancel';
+			cancelButton.className = 'cancel-task';
 			cancelButton.addEventListener('click', function() {
 				row.parentElement.deleteRow(-1);	// delete this row (last one)
 			});

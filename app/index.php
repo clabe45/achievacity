@@ -1,4 +1,5 @@
-<!-- should be included in /index.php -->
+<!-- this file should be included in /index.php -->
+<!-- TODO: adjust table column widths to fit better -->
 <script src="app/js/util.js"></script>
 <script src="app/js/refresh.js"></script>
 <script src="app/js/create.js"></script>
@@ -23,14 +24,15 @@
 			</thead>
 			<tbody></tbody>
 		</table>
-		<button id="start-goal">Add goal</button>
+		<button id="start-goal">Create goal</button>
 	</div>
+	<!-- #start-goal lies below its parent div, so add a break :/ --><br><hr />
 	<div id="routines">
 		<h2>Routines</h2>
 		<table id="routines-table">
 			<!-- TODO -->
 		</table>
-		<button id="start-routine" disabled>Add routine</button>
+		<button id="start-routine" disabled>Create routine</button>
 	</div>
 </div>
 <div id="scores">
