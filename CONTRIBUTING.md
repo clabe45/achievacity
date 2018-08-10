@@ -58,4 +58,4 @@ if (true)
 2. Leave comments where another developer would ask a question.
 
 ## Additional Notes
-This project is very new and empty, but these documents will grow as the app does!
+If you have any questions or just want to communicate more, join our [Slack team](https://join.slack.com/t/achievacity/shared_invite/enQtNDEyNjM2ODQ3OTIxLWVlOTYxOGNiODAwOWJmNGI3MDFlOWZlZWI5MGMxZTZjYmM4NGMzMmQyMzFjMWUzMGNkYzE0MmEyNjM3ZmQxMjA)!
