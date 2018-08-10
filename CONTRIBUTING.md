@@ -18,7 +18,7 @@
 ### Install UserSpice
 1. Start localhost server, if necessary.
 2. `CREATE DATABASE achievacity`
-3. Open `index.php` and follow install instructions.
+3. Open `index.php` and follow install instructions. (For Step 2, enter your database host, username, and password; and enter `achievacity` for the database name.)
 
 ### Clean up
 - `rm -r install`
