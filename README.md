@@ -12,5 +12,10 @@ This app will record how well the user has followed her goals and/or routines an
 ### Scoring
 Score is calculated by performing a weighted average on the user's goals and routines. Each goal is valued as `1` (complete), `0.5` (partially complete), or `0` (incomplete), and each routine is marked as a percentage of how many times it was completed out of all the times it _could_ have been completed since the last scoring.
 
+## Why It Matters
+I started this app because I wasn't getting _nearly as much accomplished as I wanted to_. This app will allow others to get things done in a practical way. It will provide incentive and motivation to stick with their ideas, making their hopes reality. Who knows? It might even turn into a contest between friends to see who has done better at achieving their goals! Either way, this goal of this project is for others to be able to track and do their routines and goals effectively.
+
+*Plus it's open source.*
+
 ## Development
-This project is hot off the press (and very much a work in progress)! If you would like to get involved, please check out [its future](.dev) and [CONTRIBUTING.md](CONTRIBUTING.md)! You can also join the Slack [Achievacity Team](https://join.slack.com/t/achievacity/shared_invite/enQtNDEyNjM2ODQ3OTIxLWVlOTYxOGNiODAwOWJmNGI3MDFlOWZlZWI5MGMxZTZjYmM4NGMzMmQyMzFjMWUzMGNkYzE0MmEyNjM3ZmQxMjA)!
+If you would like to get involved, please check out [CONTRIBUTING.md](CONTRIBUTING.md)! You can also join the Slack [Achievacity Team](https://join.slack.com/t/achievacity/shared_invite/enQtNDEyNjM2ODQ3OTIxLWVlOTYxOGNiODAwOWJmNGI3MDFlOWZlZWI5MGMxZTZjYmM4NGMzMmQyMzFjMWUzMGNkYzE0MmEyNjM3ZmQxMjA)!

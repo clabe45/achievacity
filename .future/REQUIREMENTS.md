@@ -4,10 +4,7 @@ Achievacity is a web app that provides a scoring system that records generic use
 
 ## Navigation Patterns
 - Start
-  1. User registers by entering his email address.
-  2. He opens the confirmation link.
-  3. He sets a password.
-  4. He is redirected to the home page.
+  - User registers by entering his email address.
 - Usage
   - User adds goals and/or routines, naming them and assigning weight, due dates, and optional descriptions.
 
