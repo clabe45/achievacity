@@ -6,6 +6,7 @@
 var Create = (function() {
 	$(document).ready(function() {
 		$('#start-goal').click(function() {
+			confirmExitMessage = 'Lose unsaved task?';
 			Refresh.newItem.goal();
 			$(this).hide();	// don't let users start creating two goals at once
 		});
@@ -42,10 +43,4 @@ Util.addRowListener(function(row) {
 			});
 		} else $(input).datepicker({ minDate: /*today*/0 });
 	}
-	row.querySelector('.add-task').addEventListener('click', function() {
-		$('#start-goal').show();	// now user can create another goal
-	});
-	row.querySelector('.cancel-task').addEventListener('click', function() {
-		$('#start-goal').show();	// now user can create another goal
-	});
 });

@@ -1,5 +1,6 @@
 <!-- this file should be included in /index.php -->
 <!-- TODO: adjust table column widths to fit better -->
+<script src="app/js/state.js"></script>
 <script src="app/js/util.js"></script>
 <script src="app/js/refresh.js"></script>
 <script src="app/js/create.js"></script>

@@ -87,12 +87,14 @@ $(document).ready(function() {
 		el.readOnly = false;
 		el.focus();
 		el.lastValue = el.value;	// for if the user cancels the editing
+		confirmExitMessage = 'Cancel edit?';
 		currentlyEditing = el;
 	}
 
 	function makeReadonly(el) {
 		el.readOnly = true;
 		el.blur();
+		confirmExitMessage = null;	// safe to leave page
 		currentlyEditing = null;
 	}
 

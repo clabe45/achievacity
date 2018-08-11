@@ -104,17 +104,19 @@ let Refresh = (function() {
 			// IMO, this doesn't need a separate `delete.js`, we can do that if necessary though
 			// TODO: add confirmation message
 			deleteButton.addEventListener('click', function() {
-				Util.post(
-					'app/ajax/goal/delete.php',
-					{ name: row.querySelector('.name input').value }
-				)
-					.then(function(data) {
-						Refresh.list.goals();
-						// TODO
-					})
-					.catch(function(xhr, status, error) {
-						// TODO
-					});
+				if (confirm("Permantly delete this goal?")) {
+					Util.post(
+						'app/ajax/goal/delete.php',
+						{ name: row.querySelector('.name input').value }
+					)
+						.then(function(data) {
+							Refresh.list.goals();
+							// TODO
+						})
+						.catch(function(xhr, status, error) {
+							// TODO
+						});
+				}
 			});
 			row.insertCell(-1).appendChild(deleteButton);
 		} else {
@@ -124,13 +126,16 @@ let Refresh = (function() {
 			addButton.className = 'add-task';
 			addButton.addEventListener('click', function() {
 				// TODO: Util.Util.validate and display error(s) if necessary
-				if (Util.validateRow(row))
+				if (Util.validateRow(row)) {
+					confirmExitMessage = null;	// safe to leave page
 					Create.goal(
 						row.querySelector('.name input').value,
 						row.querySelector('.description input').value,
 						row.querySelector('.due-date input').value,
 						row.querySelector('.weight input').value
 					);
+				}
+				$('#start-goal').show();	// now user can create another goal
 			});
 			row.insertCell(-1).appendChild(addButton);
 
@@ -138,7 +143,11 @@ let Refresh = (function() {
 			cancelButton.innerHTML = 'Cancel';	// TODO: replace these with images?
 			cancelButton.className = 'cancel-task';
 			cancelButton.addEventListener('click', function() {
-				row.parentElement.deleteRow(-1);	// delete this row (last one)
+				if (confirm('Cancel goal?')) {
+					confirmExitMessage = null;
+					row.parentElement.deleteRow(-1);	// delete this row (last one)
+					$('#start-goal').show();	// now user can create another goal
+				}
 			});
 			row.insertCell(-1).appendChild(cancelButton);
 		}
