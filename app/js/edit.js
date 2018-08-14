@@ -1,7 +1,8 @@
 /**
  * For task editing.
- * @module
+ * @module edit
  */
+// NOTE: apparently, you need to include the name after @module for it to work
 
 import post from './util/ajax.js';
 import * as rows from './util/rows.js';
