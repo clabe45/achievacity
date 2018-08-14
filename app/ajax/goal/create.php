@@ -40,7 +40,7 @@
 			$return['message'] = "Goal '{$goal['name']}' added successfully!";
 		} else {
 			$return['success'] = false;
-			$return['message'] = "An internal server error occured.";
+			$return['message'] = "An internal server error occurred.";
 		}
 		echo json_encode($return);
 

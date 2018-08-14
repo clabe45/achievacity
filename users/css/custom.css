@@ -1,6 +1,13 @@
 /*  GLOBAL - (TODO? in future replace UserSpice styling with this) */
+input {
+    padding: 5px;
+}
+input[type='text'], textarea {
+    background-color: #fff;
+}
 input:not([type='range']):not([type='checkbox']):not([readonly]):focus,
 input[type='range']:focus, input[type='checkbox']:focus {
+    /* TODO: make this red for .invalid */
     box-shadow: 0 0 3px purple;
     outline: 0 none;
 }
@@ -52,6 +59,7 @@ input[type='range']:focus, input[type='checkbox']:focus {
     width: 100px;
 }
 
+/* TODO: reserve 1px border space before becoming .invalid to prevent things shifting around */
 .invalid {
     border: 1px solid #db343c;
     /* color: #db343c; */

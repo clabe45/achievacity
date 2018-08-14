@@ -6,7 +6,7 @@
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		header('Content-Type: application/json');
 		require_once "../../../users/init.php";	// ew TODO: figure absolute/relative paths out
-        require_once "clean.php";
+        require_once "util/clean.php";
 		// taken from header.php (the rest of that file would clutter json output with html)
 		$db = DB::getInstance();
 
@@ -19,7 +19,7 @@
 		if ($db->error()) {
 			$return = [
 				'success' => false,
-				'message' => 'An internal error occured while fetching goals.'
+				'message' => 'An internal error occurred while fetching goals.'
 			];
 		} else $return = $goal;
 		echo json_encode($return);

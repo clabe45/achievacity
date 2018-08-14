@@ -35,7 +35,7 @@
 			$return['message'] = null;	// no need to display a message on edit
 		} else {
 			$return['success'] = false;
-			$return['message'] = "An internal server error occured.";
+			$return['message'] = "An internal server error occurred.";
 		}
 
 		echo json_encode([]);

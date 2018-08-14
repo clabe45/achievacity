@@ -1,10 +1,6 @@
 <!-- this file should be included in /index.php -->
 <!-- TODO: adjust table column widths to fit better -->
-<script src="app/js/state.js"></script>
-<script src="app/js/util.js"></script>
-<script src="app/js/refresh.js"></script>
-<script src="app/js/create.js"></script>
-<script src="app/js/edit.js"></script>
+<script type="module" src="app/js/index.js"></script>
 <div id="global-messages">
 	<div id="global-success" class="global-message" style="display:none">success</div>
 	<div id="global-error" class="global-message" style="display:none">error</div>

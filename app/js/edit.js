@@ -1,49 +1,63 @@
 /**
- * @file For task editing
+ * For task editing.
+ * @file
  */
-$(document).ready(function() {
-	/*
-		Everything is dynamic here, because the tables will reload a lot, so use $(document).on
-	*/
-	var currentlyEditing = null;	// the current input element that the user is editing
-	// Make data cells editable.
-	$(document).on('dblclick', '#tasks input.editable:not([type="range"])', function() {
-		makeEditable(this);
-	});
-	// Detect focus only by tab key.
-	$(document).keyup(function(event) {	// https://stackoverflow.com/a/16145062/3783155
-		var code = event.keyCode ? event.keyCode : event.which;
-		if (code === 9 && $('#tasks tr:not(.create) input.editable:focus').length)
-			makeEditable(event.target);
-	});
 
-	// lose focus (blur is fine for this, as there are no children)
-	$(document).on('blur', '#tasks tr:not(.create) input.editable:not([readonly])', function(event) {
-		// Treat as _escape_
-		event.target.value = event.target.lastValue;	// cancel editing
-		makeReadonly(event.target);
-	});
+import post from './util/ajax.js';
+import * as rows from './util/rows.js';
+import * as forms from './util/forms.js';
+import * as state from './state.js';
+import * as load from './load/index.js';
 
-	// check for _enter_ and _esc_
-	$(document).on('keyup', "#tasks tr:not(.create) input.editable:not([readonly])", function(event) {
-		var code = event.keyCode ? event.keyCode : event.which;
-		if (code === 13) {
-			// enter
-			if (Util.validate(event.target)) {
-				makeReadonly(event.target);
-				updateTaskData(event.target);
-			}
+/*
+ * Everything is dynamic here, because the tables will reload a lot, so use $(document).on
+ */
 
-		}
-		if (code === 27) {
-			// escape
-			event.target.value = event.target.lastValue;	// cancel editing
-			makeReadonly(event.target);
-		}
-	});
+/** the current input element that the user is editing */
+let currentlyEditing = null;
 
+function makeEditable(el) {
+	if (el.type !== 'checkbox' && el.type !== 'range') el.readOnly = false;
+	el.focus();
+	el.lastValue = el.value;	// for if the user cancels the editing
+	state.setConfirmExitMessage('Cancel edit?');
+	currentlyEditing = el;
+}
+
+function makeReadonly(el) {
+	if (el.type !== 'checkbox' && el.type !== 'range') el.readOnly = true;
+	el.blur();
+	state.clearConfirmExitMessage();	// safe to leave page
+	currentlyEditing = null;
+}
+
+/**
+ * Save an edited task input element.
+ * @param {HTMLInputElement} input
+ */
+function updateTaskData(input) {
+	let type = $(input).closest('table').prop('id').startsWith("goals") ? 'goal' : 'routine',
+		key = input.parentElement.className,	// the table cell's `class` is the key
+		value = input.type != 'checkbox' ? input.value : input.indeterminate ? null : input.checked,
+		nameInput = $(input).closest('tr').find('input')[0],	// get input in first cell;
+		// Use lastValue, if the name is the key that's being changed, so that the ajax call can find the right task!
+		name = nameInput.value,
+		originalName = key === 'name' ? nameInput.lastValue : nameInput.value;
+
+	post(
+		`app/ajax/${type}/edit.php`,
+		{ name: originalName, key: key, value: value }
+	)
+		.then(function(data) {
+			// doesn't seem to be necessary, but technically good for if the request failed
+			// Use `name` not `originalName` because now the html `name` attribute is modified.
+			load.item.type(type, name);
+		});
+}
+
+export function init() {
 	// add listener to datepicker select event, by modifying inputs when inserted into the DOM
-	Util.addRowListener(function(row) {
+	rows.addRowListener(function(row) {
 		// don't modify creation row (see create.js)
 		if (row.className === 'create') return;
 
@@ -83,41 +97,39 @@ $(document).ready(function() {
 		});
 	});
 
-	function makeEditable(el) {
-		el.readOnly = false;
-		el.focus();
-		el.lastValue = el.value;	// for if the user cancels the editing
-		confirmExitMessage = 'Cancel edit?';
-		currentlyEditing = el;
-	}
+	// Make data cells editable.
+	$(document).on('dblclick', '#tasks input.editable:not([type="range"])', function() {
+		makeEditable(this);
+	});
+	// Detect focus only by tab key.
+	$(document).keyup(function(event) {	// https://stackoverflow.com/a/16145062/3783155
+		var code = event.keyCode ? event.keyCode : event.which;
+		if (code === 9 && $('#tasks tr:not(.create) input.editable:focus').length)
+			makeEditable(event.target);
+	});
 
-	function makeReadonly(el) {
-		el.readOnly = true;
-		el.blur();
-		confirmExitMessage = null;	// safe to leave page
-		currentlyEditing = null;
-	}
+	// lose focus (blur is fine for this, as there are no children)
+	$(document).on('blur', '#tasks tr:not(.create) input.editable:not([readonly])', function(event) {
+		// Treat as _escape_
+		event.target.value = event.target.lastValue;	// cancel editing
+		makeReadonly(event.target);
+	});
 
-	/**
-	 * Save an edited task input element.
-	 * @param {HTMLInputElement} input
-	 */
-	function updateTaskData(input) {
-		let type = $(input).closest('table').prop('id').startsWith("goals") ? 'goal' : 'routine',
-			key = input.parentElement.className,	// the table cell's `class` is the key
-			value = input.type != 'checkbox' ? input.value : input.indeterminate ? null : input.checked,
-			nameInput = $(input).closest('tr').find('input')[0],	// get input in first cell;
-			// Use lastValue, if the name is the key that's being changed, so that the ajax call can find the right task!
-			name = nameInput.value,
-			originalName = key === 'name' ? nameInput.lastValue : nameInput.value;
-		Util.post(
-			'app/ajax/'+type+'/edit.php',
-			{ name: originalName, key: key, value: value }
-		)
-			.then(function(data) {
-				// doesn't seem to be necessary, but technically good for if the request failed
-				// Use `name` not `originalName` because now the html `name` attribute is modified.
-				Refresh.item.type(type, name);
-			});
-	}
-});
+	// check for _enter_ and _esc_
+	$(document).on('keyup', "#tasks tr:not(.create) input.editable:not([readonly])", function(event) {
+		var code = event.keyCode ? event.keyCode : event.which;
+		if (code === 13) {
+			// enter
+			if (forms.validate(event.target)) {
+				makeReadonly(event.target);
+				updateTaskData(event.target);
+			}
+
+		}
+		if (code === 27) {
+			// escape
+			event.target.value = event.target.lastValue;	// cancel editing
+			makeReadonly(event.target);
+		}
+	});
+}
