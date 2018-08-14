@@ -18,4 +18,6 @@ I started this app because I wasn't getting _nearly as many things done as I wan
 *Plus it's open source.*
 
 ## Development
-If you would like to get involved, please check out [CONTRIBUTING.md](CONTRIBUTING.md)! You can also join the Slack [Achievacity Team](https://join.slack.com/t/achievacity/shared_invite/enQtNDEyNjM2ODQ3OTIxLWVlOTYxOGNiODAwOWJmNGI3MDFlOWZlZWI5MGMxZTZjYmM4NGMzMmQyMzFjMWUzMGNkYzE0MmEyNjM3ZmQxMjA)!
+If you would like to get involved, please check out [CONTRIBUTING.md](CONTRIBUTING.md)! You can also join the Slack [Achievacity Team][slack]!
+
+[slack]: https://join.slack.com/t/achievacity/shared_invite/enQtNDEyNjM2ODQ3OTIxLWVlOTYxOGNiODAwOWJmNGI3MDFlOWZlZWI5MGMxZTZjYmM4NGMzMmQyMzFjMWUzMGNkYzE0MmEyNjM3ZmQxMjA

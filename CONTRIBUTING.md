@@ -43,6 +43,9 @@ Due to the project's dependency UserSpice, the setup process is a little complex
 3. `git push origin master`
 4. Submit a pull request on your fork.
 
+## Documentation
+For docs and tutorials, visit [this intro page](https://clabe45.github.io/projects/achievacity/tutorials/intro).
+
 ## Styleguide
 1. Write clean code. [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Stay consistent to the project style:
 ```
