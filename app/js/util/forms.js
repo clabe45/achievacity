@@ -24,7 +24,7 @@ export function detectEnterCancel(event, enterButton, cancelButton) {
  */
 export function validateRow(row) {
     let passed = true;
-    let requiredKeys = ['name', 'description', 'due-date'];	// weight cannot be invalid
+    let requiredKeys = ['name', 'description', 'due-date'];	// weight cannot be invalid and reason is optional
 
     for (let i=0; i<requiredKeys.length; i++) {
         let key = requiredKeys[i];

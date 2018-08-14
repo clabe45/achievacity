@@ -33,7 +33,7 @@ export function populateTable(table, data) {
 export function populateRow(row, item) {
 	let creating = !item;
 	item = item || {	// default values:
-		name: '', description: '', due_date: '', weight: 3, /*omit completed (we can only do this at the end)*/
+		name: '', description: '', reason: '', due_date: '', weight: 3, /*omit `completed` (we can only do this at the end)*/
 	};
 	// clear any existing cells
 	while (row.children.length)
@@ -74,12 +74,11 @@ export function populateRow(row, item) {
 		addButton.addEventListener('click', function() {
 			if (forms.validateRow(row)) {
 				state.clearConfirmExitMessage();	// safe to leave page
-				create.goal(
-					row.querySelector('.name input').value,
-					row.querySelector('.description input').value,
-					row.querySelector('.due-date input').value,
-					row.querySelector('.weight input').value
-				)
+				let data = ['name', 'description', 'reason', 'due-date', 'weight'].reduce(function(obj, key){
+					obj[key] = row.querySelector(`.${key} input`).value;
+					return obj;
+				}, {});	// https://stackoverflow.com/a/11068265/3783155
+				create.goal(data)
 					.then(function() {
 						$('#start-goal').show();	// now user can create another goal
 					});
@@ -119,6 +118,12 @@ function populateCell(cell, key, value, creating) {
 		case 'description': {
 			input.type = 'text';
 			input.placeholder = 'Get the best social app, because it\s cool.';
+			input.className = 'editable';
+			break;
+		}
+		case 'reason': {
+			input.type = 'text';
+			input.placeholder = 'I\'ll meet new people';
 			input.className = 'editable';
 			break;
 		}

@@ -2,7 +2,7 @@
 	/*
 		User must be logged in.
 		TODO: sort by relevance (i.e., due_date and weight)
-		TODO? Use this is an "table of contents", so to speak, and the `item.php` for getting each item's data.
+		TODO? Use this as an "table of contents", so to speak, and the `item.php` for getting each item's data.
 		TODO? check if user is logged in (in other files too)
 	*/
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {

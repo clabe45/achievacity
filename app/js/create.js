@@ -11,18 +11,20 @@ import * as load from './load/index.js';
 
 /**
  * Inserts a new goal with the specified column values into the database.
- * @param {string} name
- * @param {string} description
- * @param {string} dueDate - The due date in <code>MM/DD/YYYY</code> format.
- * @param {number} weight
+ * @param {object} data
+ * @param {string} data.name
+ * @param {string} data.description
+ * @param {string} data.reason
+ * @param {string} data.dueDate - The due date in <code>MM/DD/YYYY</code> format.
+ * @param {number} data.weight
  * @return {Promise}
  */
-export function goal(name, description, dueDate, weight) {
+export function goal(data) {
 	// this is weird because it's a promise within a promise, but I think it's ok
 	return new Promise(function(resolve, reject) {
 		post(
 			'app/ajax/goal/create.php',		// called from root
-			{ 'name': name, 'description': description, 'due-date': dueDate, 'weight': weight }
+			data
 		)
 			.then(function() {
 				load.list.goals();

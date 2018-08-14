@@ -5,6 +5,7 @@ input {
 input[type='text'], textarea {
     background-color: #fff;
 }
+/* TODO: make this with .invalid box-shadow: 0 0 3px thatshadeofred; */
 input:not([type='range']):not([type='checkbox']):not([readonly]):focus,
 input[type='range']:focus, input[type='checkbox']:focus {
     /* TODO: make this red for .invalid */
@@ -24,6 +25,7 @@ input[type='range']:focus, input[type='checkbox']:focus {
     margin: auto;
 }
 /* TODO: make .success and .error and make these styles more applicable to every success/error */
+/* TODO: bottom outline doesn't show when there's a row beneath it; fix that. */
 #global-success {
     background-color: rgba(52, 219, 60, 0.2);
     color: #34db3c; /* same as above, but opaque */
@@ -50,6 +52,8 @@ input[type='range']:focus, input[type='checkbox']:focus {
 
 #tasks td input {
     margin: 0 2px;  /* so red .invalid borders don't touch each other */
+    /* reserve 1px border space before becoming .invalid to prevent things shifting around */
+    border: 1px solid transparent;
 }
 
 #tasks td input[type="range"] {
@@ -59,8 +63,7 @@ input[type='range']:focus, input[type='checkbox']:focus {
     width: 100px;
 }
 
-/* TODO: reserve 1px border space before becoming .invalid to prevent things shifting around */
-.invalid {
+#tasks td input.invalid {
     border: 1px solid #db343c;
     /* color: #db343c; */
 }

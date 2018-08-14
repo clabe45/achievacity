@@ -1,5 +1,6 @@
 <!-- this file should be included in /index.php -->
 <!-- TODO: adjust table column widths to fit better -->
+<!-- TODO: show message when there are no goals -->
 <script type="module" src="app/js/index.js"></script>
 <div id="global-messages">
 	<div id="global-success" class="global-message" style="display:none">success</div>
@@ -13,6 +14,8 @@
 				<tr>
 					<th><strong>Name</strong></th>
 					<th><strong>Description</strong></th>
+					<!-- TODO? better way to show that Reason is an optional field? -->
+					<th><strong><em>Reason</em></strong></th>
 					<th><strong>Due Date</strong></th>
 					<th><strong>Weight</strong></th>
 					<th><strong>Completed?</strong>

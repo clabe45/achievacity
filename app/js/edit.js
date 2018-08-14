@@ -1,6 +1,6 @@
 /**
  * For task editing.
- * @file
+ * @module
  */
 
 import post from './util/ajax.js';
@@ -27,6 +27,8 @@ function makeEditable(el) {
 function makeReadonly(el) {
 	if (el.type !== 'checkbox' && el.type !== 'range') el.readOnly = true;
 	el.blur();
+	if ( $(el).hasClass('invalid') )
+		$(el).removeClass('invalid');
 	state.clearConfirmExitMessage();	// safe to leave page
 	currentlyEditing = null;
 }

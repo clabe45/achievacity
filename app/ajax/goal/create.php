@@ -1,7 +1,6 @@
 <?php
 	/*
 		User must be logged in.
-		TODO: Add date created to table structure
 	*/
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// header('Content-Type: application/json');
@@ -15,6 +14,7 @@
 			'user_id' => $user_id,
 			'name' => $_POST['name'],
 			'description' => $_POST['description'],
+			'reason' => $_POST['reason'],
 			// Reformat from jQuery UI to SQL DATE type
 			'due_date' => date('Y-m-d', strtotime($_POST['due-date'])),
 			'weight' => $_POST['weight']
@@ -23,7 +23,7 @@
 		// Check if user has a goal or routine named `$goal['name']`.
 		$existing_goal = $db->query("SELECT * FROM goals WHERE user_id=? AND name=? LIMIT 1", [$user_id, $goal['name']]);
 		$existing_routine = $db->query("SELECT * FROM routines WHERE user_id=? AND name=? LIMIT 1", [$user_id, $goal['name']]);
-		// TODO: do this sort of error reporting in all ajax files
+
 		if ($existing_goal->count() > 0) {
 			$return['success'] = false;
 			$return['message'] = "Existing goal '{$goal['name']}'!";
