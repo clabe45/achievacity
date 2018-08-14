@@ -6,7 +6,10 @@ Achievacity is a web app that scores user success with generic routines and goal
 This app will record how well the user has followed her goals and/or routines and give scores based on that success.
 
 **Goals** are one-time accomplishments. **Routines** are recurring accomplishments. Each goal/routine has the following properties:
-- Weight given by the user on a five-point scale, `1` being unimportant and `5` being very important.
+- A name
+- A description
+- A sentence explaining *why* it should be done
+- A weight given by the user on a five-point scale, `1` being unimportant and `5` being very important
 - A due date. If it is not completed by then, it is counted as incomplete. Each routine has a cyclic due date (e.g., every Monday).
 
 ### Scoring
@@ -18,6 +21,6 @@ I started this app because I wasn't getting _nearly as many things done as I wan
 *Plus it's open source.*
 
 ## Development
-If you would like to get involved, please check out [CONTRIBUTING.md](CONTRIBUTING.md)! You can also join the Slack [Achievacity Team][slack]!
+If you would like to get involved, please check out [CONTRIBUTING.md](CONTRIBUTING.md) for guides, docs, and more! You can also join the Slack [Achievacity Team][slack]!
 
 [slack]: https://join.slack.com/t/achievacity/shared_invite/enQtNDEyNjM2ODQ3OTIxLWVlOTYxOGNiODAwOWJmNGI3MDFlOWZlZWI5MGMxZTZjYmM4NGMzMmQyMzFjMWUzMGNkYzE0MmEyNjM3ZmQxMjA
