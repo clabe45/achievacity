@@ -5,7 +5,7 @@ Achievacity is a web app that scores individuals' success with any routines and 
 The end-product is for people who are frustrated with their goals and would like to keep them better *and* for people who are having success and just want a score put to their hard work.
 
 ## Why It Matters
-I started this app because I wasn't getting fulfilling my plans. This app will allow others to get things done in a practical way. It will provide incentive and motivation to stick with their ideas, making their hopes reality. Who knows? It might even turn into a contest between friends to see who has done better at achieving their goals! Either way, the aim of this project is for others to be able to track and get motivated with their routines and goals.
+I started this app because I wasn't fulfilling my plans. This app will allow others to get things done in a practical way. It will provide incentive and motivation to stick with their ideas, making their hopes reality. Who knows? It might even turn into a contest between friends to see who has done better at achieving their goals! Either way, the aim of this project is for others to be able to track and get motivated with their routines and goals.
 
 *Plus it's open source.*
 
