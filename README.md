@@ -20,6 +20,9 @@ This app will record how well the user has followed her goals and/or routines an
 - A weight given by the user on a five-point scale, `1` being unimportant and `5` being very important
 - A due date. If it is not completed by then, it is counted as incomplete. Each routine has a cyclic due date (e.g., every Monday).
 
+### Subtasks
+Subtasks are steps to goals and routines. These steps are slightly different than regular tasks, and parent tasks act differently than non-parent tasks.
+
 ### Scoring
 Score is calculated by performing a weighted average on the user's goals and routines. Each goal is valued as `1` (complete), `0.5` (partially complete), or `0` (totally incomplete), and each routine is marked as a percentage of how many times it was completed out of all the times it _could_ have been completed since the last scoring.
 

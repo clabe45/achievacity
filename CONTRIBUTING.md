@@ -35,7 +35,8 @@ Due to the project's dependency UserSpice, the setup process is a little complex
 4. gitignore everything: `/*`
 
 ## Getting changes
-- Instead of pulling, perform a hard reset: `git reset --hard origin/master`. That way the unchanged, gitignored files will be preserved.
+1. Instead of pulling, perform a hard reset: `git reset --hard origin/master`. That way the unchanged, gitignored files will be preserved.
+2. If necessary, re-import [database](.db/achievacity.sql).
 
 ## Submitting Changes
 1. Un-gitignore the modified file(s), by prefixing the path(s) with `!`. **Note: only add files that were previously added or that you modified.**
